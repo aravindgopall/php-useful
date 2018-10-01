@@ -35,10 +35,64 @@ class EasyHeaders
             404);
         exit();
     }
-
+    
+    static function buildAnyheader(string $header) #for custom headers you can pass to this function
+    {
+        header($header);
+    }
+    
+    static function buildAnyheader(string $headertype, string $headerVal)
+    {
+        header($headertype . $headerVal);
+    }
+        
     static function json_header()
     {
         header('Content-Type: application/json');
+    }
+    
+    static function urlencoded_header()
+    {
+        header('Content-Type: application/x-www-form-url-encoded');
+    }
+    
+    static function form_header()
+    {
+        header('Content-Type: multipart/form-data');
+    }
+    
+    static function buildBasicAuth(string $userName, string $passw){
+        header("Authorization: Basic " . base64_encode("$username:$password"));
+    }
+    
+    static function acceptEncoding(string $encoding)
+    {
+        header("Accept-Charset: ". $encoding);
+    }
+    
+    static function accept(string $type)
+    {
+        header("Accept :".$type);
+    }
+        
+    static function accessControlRequestMethod (string $method)
+    {
+        header("Access-Control-Request-Method : ".$method);
+    }
+    
+    static function cacheControl(string $val)
+    {
+        header("Cache-Control :".$val);
+    }
+    
+    static function setCookie(string $cookie)
+    {
+        header("Cookie :".$cookie);
+    }
+        
+    static function setOrigin(string $origin)
+    {
+        header("Origin : ".$origin);
     }
 
 }
